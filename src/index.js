@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import { makeMainRoutes } from './routes';
+import { ApolloProvider } from 'react-apollo';
+import { client } from './apollo';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+ReactDOM.render(
+    (
+        <ApolloProvider client={client}>
+            {makeMainRoutes()}
+        </ApolloProvider>
+    ), document.getElementById('root'));
