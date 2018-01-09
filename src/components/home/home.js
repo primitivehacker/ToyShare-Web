@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import {
@@ -14,6 +15,7 @@ class Home extends Component {
                 <Segment>
                     <Header>
                         Hello {this.props.data.user ? this.props.data.user.first_name : 'friend' }!
+
                     </Header>
                 </Segment>
             </Container>

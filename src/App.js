@@ -16,9 +16,17 @@ class App extends Component {
 				<Menu fluid inverted>
 					<Container>
 						<Menu.Item onClick={this.goTo.bind(this, '')}>
-							Wyroo
+							ToyShare
 						</Menu.Item>
-					
+
+						<Menu.Item onClick={this.goTo.bind(this, 'users/list')}>
+							Users
+						</Menu.Item>
+
+						<Menu.Item onClick={this.goTo.bind(this, 'toys/list')}>
+							Toys
+						</Menu.Item>
+
 					</Container>
 				</Menu>
 			</div>

@@ -19,7 +19,7 @@ const userQueryWithGQL = graphql(userQuery, {
     options: (ownProps) => {
         return {
             variables: {
-                email: 'creedjm@gmail.com'
+                email: 'siestaderek@gmail.com'
             }
         }
     }

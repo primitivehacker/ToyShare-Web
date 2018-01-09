@@ -11,8 +11,9 @@ export const userQuery = gql`
             first_name
             last_name
             email
+            phone_number
         }
-    } 
+    }
 `;
 
 export const userUpdate = gql`

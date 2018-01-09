@@ -5,9 +5,15 @@ import { makeMainRoutes } from './routes';
 import { ApolloProvider } from 'react-apollo';
 import { client } from './apollo';
 
+
+
+
+
+
+
 ReactDOM.render(
     (
         <ApolloProvider client={client}>
-            {makeMainRoutes()}
+          {makeMainRoutes()}
         </ApolloProvider>
     ), document.getElementById('root'));
