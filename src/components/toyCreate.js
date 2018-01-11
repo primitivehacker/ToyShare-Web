@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { toyMutation } from '../gql/toys';
 import { toyQuery } from '../gql/toys';
-import { Form } from 'semantic-ui-react'
+import { categoryOptions } from './categoryOptions';
+import { winterSubCategoryOptions } from './winterSubCategoryOptions';
+import { summerSubCategoryOptions } from './summerSubCategoryOptions';
+import { Form, Dropdown } from 'semantic-ui-react'
 
 
 class ToyCreate extends Component {
@@ -32,6 +35,14 @@ class ToyCreate extends Component {
     }).then(() => this.props.history.push(`/toys/list`))
   }
 
+  decideSubCategory = () => {
+    if (categoryOptions.key === 'SMMR') {
+      return summerSubCategoryOptions;
+    } else {
+      return winterSubCategoryOptions;
+    }
+  }
+
 
 
 
@@ -39,6 +50,8 @@ class ToyCreate extends Component {
     return (
       <div>
         <h3>Create a New Toy</h3>
+        <Dropdown placeholder='Category' search selection options={categoryOptions} />
+        <Dropdown placeholder='Sub Category' search selection options={this.decideSubCategory} />
         <Form onSubmit={this.onSubmit.bind(this)}>
           <Form.Field>
             <label>Category</label>
