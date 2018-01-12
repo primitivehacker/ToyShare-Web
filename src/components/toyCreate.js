@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { Container, Form, Dropdown } from 'semantic-ui-react';
+
+import { categoryOptions } from './categoryOptions';
+import { summerSubCategoryOptions } from './summerSubCategoryOptions';
 import { toyMutation } from '../gql/toys';
 import { toyQuery } from '../gql/toys';
-import { categoryOptions } from './categoryOptions';
 import { winterSubCategoryOptions } from './winterSubCategoryOptions';
-import { summerSubCategoryOptions } from './summerSubCategoryOptions';
-import { Form, Dropdown } from 'semantic-ui-react'
-
 
 class ToyCreate extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { category: '' };
-    this.state = { subCategory: '' };
-    this.state = { price: 0.0 };
-    this.state = { condition: '' };
-    this.state = { location: '' };
+    this.state = { 
+      category: '',
+      subCategory: '',
+      price: 0.0,
+      condition: '',
+      location: '',
+      categorySelect: 'SMMR'
+    }
   }
 
   onSubmit(event) {
@@ -36,22 +39,25 @@ class ToyCreate extends Component {
   }
 
   decideSubCategory = () => {
-    if (categoryOptions.key === 'SMMR') {
-      return summerSubCategoryOptions;
-    } else {
-      return winterSubCategoryOptions;
-    }
+    return this.state.categorySelect === 'SMMR' ? summerSubCategoryOptions : winterSubCategoryOptions;
   }
-
-
-
 
   render() {
     return (
-      <div>
+      <Container>
         <h3>Create a New Toy</h3>
-        <Dropdown placeholder='Category' search selection options={categoryOptions} />
-        <Dropdown placeholder='Sub Category' search selection options={this.decideSubCategory} />
+        <Dropdown 
+          placeholder='Category' 
+          search 
+          selection 
+          options={categoryOptions} 
+          onChange={(event, data) => {
+            this.setState({
+              categorySelect: data.value
+            })
+          }}
+        />
+        <Dropdown placeholder='Sub Category' search selection options={this.decideSubCategory()} />
         <Form onSubmit={this.onSubmit.bind(this)}>
           <Form.Field>
             <label>Category</label>
@@ -101,7 +107,7 @@ class ToyCreate extends Component {
           </Form.Field>
         </Form>
 
-      </div>
+      </Container>
     );
   }
 }

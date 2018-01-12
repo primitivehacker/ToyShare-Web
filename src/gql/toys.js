@@ -4,12 +4,16 @@ export const toyQuery = gql`
   {
     toys {
       id
-      owner
       category
       subCategory
       price
       condition
       location
+      user {
+        id
+        first_name
+        last_name
+      }
     }
   }
 `;
